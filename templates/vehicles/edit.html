@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<h2>Edit Vehicle</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+<label>Registration Number</label>
+<input type="text" class="form-control"
+name="registration"
+value="{{ vehicle.registration_no }}">
+</div>
+
+<div class="mb-3">
+<label>Vehicle Name</label>
+<input type="text" class="form-control"
+name="name"
+value="{{ vehicle.vehicle_name }}">
+</div>
+
+<div class="mb-3">
+<label>Vehicle Model</label>
+<input type="text" class="form-control"
+name="model"
+value="{{ vehicle.vehicle_model }}">
+</div>
+
+<div class="mb-3">
+<label>Vehicle Type</label>
+
+<select class="form-select" name="type">
+
+<option {% if vehicle.vehicle_type=="Truck" %}selected{% endif %}>Truck</option>
+
+<option {% if vehicle.vehicle_type=="Van" %}selected{% endif %}>Van</option>
+
+<option {% if vehicle.vehicle_type=="Mini Truck" %}selected{% endif %}>Mini Truck</option>
+
+<option {% if vehicle.vehicle_type=="Tempo" %}selected{% endif %}>Tempo</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+<label>Capacity</label>
+
+<input type="number"
+class="form-control"
+name="capacity"
+value="{{ vehicle.max_capacity }}">
+
+</div>
+
+<div class="mb-3">
+<label>Odometer</label>
+
+<input type="number"
+class="form-control"
+name="odometer"
+value="{{ vehicle.odometer }}">
+
+</div>
+
+<div class="mb-3">
+<label>Cost</label>
+
+<input type="number"
+class="form-control"
+name="cost"
+value="{{ vehicle.acquisition_cost }}">
+
+</div>
+
+<button class="btn btn-warning">
+
+Update Vehicle
+
+</button>
+
+<a href="/vehicles" class="btn btn-secondary">
+
+Cancel
+
+</a>
+
+</form>
+
+</div>
+
+{% endblock %}

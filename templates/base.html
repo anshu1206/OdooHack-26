@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TransitOps</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- ================= Sidebar ================= -->
+
+    <div class="sidebar">
+
+        <h2 class="logo">🚚 TransitOps</h2>
+
+        <a href="/dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+        </a>
+
+        <!-- Fleet -->
+
+        <button class="dropdown-btn">
+
+            <i class="fa-solid fa-truck"></i>
+
+            Fleet
+
+            <i class="fa fa-caret-down float-end"></i>
+
+        </button>
+
+        <div class="dropdown-container">
+
+            <a href="/vehicles">
+
+                🚛 Vehicle Registry
+
+            </a>
+
+            <a href="/maintenance">
+
+                🔧 Maintenance
+
+            </a>
+
+            <a href="/fuel">
+
+                ⛽ Fuel Logs
+
+            </a>
+
+            <a href="/expenses">
+
+                💰 Expenses
+
+            </a>
+
+        </div>
+
+        <a href="/drivers">
+
+            <i class="fa-solid fa-users"></i>
+
+            Drivers
+
+        </a>
+
+        <a href="/trips">
+
+            <i class="fa-solid fa-route"></i>
+
+            Trips
+
+        </a>
+
+        <a href="/analytics">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+            Analytics
+
+        </a>
+
+        <!-- Settings -->
+
+        <button class="dropdown-btn">
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+            <i class="fa fa-caret-down float-end"></i>
+
+        </button>
+
+        <div class="dropdown-container">
+
+            <a href="/account">
+
+                👤 My Account
+
+            </a>
+
+            <a href="/theme">
+
+                🎨 Theme
+
+            </a>
+
+            <a href="/">
+
+                🚪 Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Main ================= -->
+
+    <div class="main">
+
+        <!-- Topbar -->
+
+        <div class="topbar">
+
+            <input
+
+                type="text"
+
+                class="search-box"
+
+                placeholder="Search...">
+
+            <div class="profile">
+
+                <i class="fa-solid fa-bell notification"></i>
+
+                <span class="badge bg-primary">
+
+                    Dispatcher
+
+                </span>
+
+                <div class="avatar">
+
+                    RK
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Content -->
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+var dropdown = document.getElementsByClassName("dropdown-btn");
+
+for (var i = 0; i < dropdown.length; i++) {
+
+    dropdown[i].addEventListener("click", function () {
+
+        this.classList.toggle("active");
+
+        var dropdownContent = this.nextElementSibling;
+
+        if (dropdownContent.style.display === "block") {
+
+            dropdownContent.style.display = "none";
+
+        } else {
+
+            dropdownContent.style.display = "block";
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>

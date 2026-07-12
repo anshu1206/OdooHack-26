@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TransitOps Login</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: #0f172a;
+        height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-container {
+        width: 1100px;
+        height: 650px;
+
+        display: flex;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .left {
+        width: 45%;
+
+        background: #f8fafc;
+
+        color: #111827;
+
+        padding: 60px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+      }
+
+      .logo {
+        font-size: 42px;
+
+        font-weight: bold;
+
+        color: #f59e0b;
+
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        color: #666;
+
+        margin-bottom: 50px;
+      }
+
+      .left h4 {
+        margin-bottom: 20px;
+      }
+
+      .left ul {
+        line-height: 40px;
+      }
+
+      .right {
+        width: 55%;
+
+        background: #111827;
+
+        color: white;
+
+        padding: 60px;
+      }
+
+      .right h2 {
+        font-size: 34px;
+      }
+
+      .right p {
+        color: #9ca3af;
+
+        margin-bottom: 35px;
+      }
+
+      .form-control,
+      .form-select {
+        background: #1f2937;
+
+        border: none;
+
+        color: white;
+
+        height: 50px;
+      }
+
+      .form-control:focus {
+        background: #1f2937;
+
+        color: white;
+
+        box-shadow: none;
+      }
+
+      .form-select {
+        color: white;
+      }
+
+      label {
+        margin-top: 15px;
+
+        margin-bottom: 8px;
+      }
+
+      .btn-login {
+        width: 100%;
+
+        background: #d97706;
+
+        color: white;
+
+        border: none;
+
+        padding: 14px;
+
+        margin-top: 30px;
+
+        border-radius: 10px;
+
+        font-size: 18px;
+
+        transition: 0.3s;
+      }
+
+      .btn-login:hover {
+        background: #b45309;
+      }
+
+      .bottom {
+        display: flex;
+
+        justify-content: space-between;
+
+        margin-top: 20px;
+      }
+
+      .bottom a {
+        color: #60a5fa;
+
+        text-decoration: none;
+      }
+
+      .error-box {
+        margin-top: 30px;
+
+        border: 2px solid #ef4444;
+
+        padding: 15px;
+
+        border-radius: 10px;
+
+        display: none;
+
+        color: #fecaca;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-container">
+      <div class="left">
+        <div class="logo">🚚 TransitOps</div>
+
+        <div class="subtitle">Smart Transport Operations Platform</div>
+
+        <h4>One Login, Four Roles</h4>
+
+        <ul>
+          <li>Fleet Manager</li>
+
+          <li>Dispatcher</li>
+
+          <li>Safety Officer</li>
+
+          <li>Financial Analyst</li>
+        </ul>
+      </div>
+
+      <div class="right">
+        <h2>Sign in to your account</h2>
+
+        <p>Enter your credentials to continue</p>
+
+        <form action="/" method="POST">
+          <label>Email</label>
+
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            placeholder="fleet@transitops.com"
+            required
+          />
+
+          <label>Password</label>
+
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="********"
+            required
+          />
+
+          <label>Role (RBAC)</label>
+
+          <select class="form-select" name="role" required>
+            <option value="">Select Role</option>
+
+            <option>Fleet Manager</option>
+
+            <option>Dispatcher</option>
+
+            <option>Safety Officer</option>
+
+            <option>Financial Analyst</option>
+          </select>
+
+          <div class="bottom">
+            <div>
+              <input type="checkbox" />
+
+              Remember Me
+            </div>
+
+            <a href="#"> Forgot Password? </a>
+          </div>
+
+          <button class="btn-login" type="submit">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+
+            Sign In
+          </button>
+        </form>
+
+        {% if error %}
+
+        <div class="alert alert-danger mt-3">{{ error }}</div>
+
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

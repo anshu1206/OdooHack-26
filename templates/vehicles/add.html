@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<h2>Add Vehicle</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label>Registration Number</label>
+
+<input
+type="text"
+class="form-control"
+name="registration"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Vehicle Name</label>
+
+<input
+type="text"
+class="form-control"
+name="name"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>Vehicle Model</label>
+
+<input
+type="text"
+class="form-control"
+name="model">
+
+</div>
+
+<div class="mb-3">
+
+<label>Vehicle Type</label>
+
+<select
+class="form-select"
+name="type">
+
+<option>Truck</option>
+
+<option>Van</option>
+
+<option>Mini Truck</option>
+
+<option>Tempo</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Maximum Capacity (Kg)</label>
+
+<input
+type="number"
+class="form-control"
+name="capacity">
+
+</div>
+
+<div class="mb-3">
+
+<label>Odometer</label>
+
+<input
+type="number"
+class="form-control"
+name="odometer">
+
+</div>
+
+<div class="mb-3">
+
+<label>Acquisition Cost</label>
+
+<input
+type="number"
+class="form-control"
+name="cost">
+
+</div>
+
+<button
+type="submit"
+class="btn btn-warning">
+
+Save Vehicle
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}
