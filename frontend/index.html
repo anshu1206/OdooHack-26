@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransitOps - Smart Transport Operations Platform</title>
+    <!-- Google Fonts: Inter and Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Dashboard Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="trial.css">
+</head>
+<body>
+
+    <!-- SPA CONTAINER -->
+    <div id="app-container">
+
+        <!-- 1. LOGIN SECTION -->
+        <div id="login-section" class="active-view">
+            <!-- Left Side Branding (Light Theme) -->
+            <div class="login-left">
+                <div class="brand-container">
+                    <div class="logo-mesh">
+                        <!-- Custom SVG Mesh Logo from reference -->
+                        <svg viewBox="0 0 100 100" width="60" height="60">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="none" stroke="#D97706" stroke-width="4" />
+                            <line x1="10" y1="30" x2="90" y2="30" stroke="#B45309" stroke-width="2" stroke-dasharray="2,2" />
+                            <line x1="10" y1="50" x2="90" y2="50" stroke="#B45309" stroke-width="2" stroke-dasharray="2,2" />
+                            <line x1="10" y1="70" x2="90" y2="70" stroke="#B45309" stroke-width="2" stroke-dasharray="2,2" />
+                            <line x1="30" y1="10" x2="30" y2="90" stroke="#B45309" stroke-width="2" stroke-dasharray="2,2" />
+                            <line x1="50" y1="10" x2="50" y2="90" stroke="#B45309" stroke-width="2" stroke-dasharray="2,2" />
+                            <line x1="70" y1="10" x2="70" y2="90" stroke="#B45309" stroke-width="2" stroke-dasharray="2,2" />
+                            <!-- Mesh details -->
+                            <path d="M 30,30 L 70,70 M 30,70 L 70,30" stroke="#D97706" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <h1>TransitOps</h1>
+                        <p class="brand-subtitle">Smart Transport Operations Platform</p>
+                    </div>
+                </div>
+
+                <div class="login-left-info">
+                    <h2>One login, four roles:</h2>
+                    <ul class="roles-bullets">
+                        <li><span>Fleet Manager</span></li>
+                        <li><span>Dispatcher</span></li>
+                        <li><span>Safety Officer</span></li>
+                        <li><span>Financial Analyst</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Side Credentials Form (Dark Theme) -->
+            <div class="login-right">
+                <div class="login-form-wrapper">
+                    <div class="form-header">
+                        <h2>Sign in to your account</h2>
+                        <p>Enter your credentials to continue</p>
+                    </div>
+
+                    <!-- Error Banner (Floating/Relative styling matching screenshot red box) -->
+                    <div id="login-error-box" class="error-state-box hidden">
+                        <div class="error-header">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            <span>Error state</span>
+                        </div>
+                        <p id="error-message-text">Invalid credentials. Account locked after 5 failed attempts.</p>
+                    </div>
+
+                    <form id="login-form">
+                        <!-- EMAIL FIELD -->
+                        <div class="input-group">
+                            <label for="email">EMAIL</label>
+                            <div class="input-field-wrapper">
+                                <i class="fa-regular fa-envelope input-icon"></i>
+                                <input type="email" id="email" placeholder="Raven.k@transitops.in" required>
+                            </div>
+                        </div>
+
+                        <!-- PASSWORD FIELD -->
+                        <div class="input-group">
+                            <label for="password">PASSWORD</label>
+                            <div class="input-field-wrapper">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <input type="password" id="password" placeholder="••••••••" required>
+                            </div>
+                        </div>
+
+                        <!-- ROLE FIELD -->
+                        <div class="input-group">
+                            <label for="role">ROLE (RBAC)</label>
+                            <div class="input-field-wrapper">
+                                <i class="fa-solid fa-user-gear input-icon"></i>
+                                <select id="role" required>
+                                    <option value="" disabled selected>Select your role...</option>
+                                    <option value="Fleet Manager">Fleet Manager</option>
+                                    <option value="Dispatcher">Dispatcher</option>
+                                    <option value="Safety Officer">Safety Officer</option>
+                                    <option value="Financial Analyst">Financial Analyst</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- UTILITIES row -->
+                        <div class="form-utilities">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="remember">
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-link" onclick="alert('Password recovery is managed by Administrator. Please contact your Fleet Operations Admin.'); return false;">Forgot password?</a>
+                        </div>
+
+                        <!-- SUBMIT BUTTON -->
+                        <button type="submit" class="btn-primary" id="btn-login-submit">
+                            <span class="btn-text">Sign In</span>
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        </button>
+                    </form>
+
+                    <!-- Role Scopes Bottom Reference -->
+                    <div class="role-scope-info">
+                        <h3>Access is scoped by role after login:</h3>
+                        <ul>
+                            <li><strong>Fleet Manager</strong> &rarr; Fleet, Maintenance</li>
+                            <li><strong>Dispatcher</strong> &rarr; Dashboard, Trips</li>
+                            <li><strong>Safety Officer</strong> &rarr; Drivers, Compliance</li>
+                            <li><strong>Financial Analyst</strong> &rarr; Fuel &amp; Expenses, Analytics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. DASHBOARD SECTION (Initially Hidden) -->
+        <div id="dashboard-section" class="hidden-view">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <div class="logo-mesh mini">
+                        <svg viewBox="0 0 100 100" width="32" height="32">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="none" stroke="#D97706" stroke-width="6" />
+                            <path d="M 30,30 L 70,70 M 30,70 L 70,30" stroke="#D97706" stroke-width="4" />
+                        </svg>
+                    </div>
+                    <h2>TransitOps</h2>
+                </div>
+
+                <div class="sidebar-user">
+                    <div class="user-avatar" id="sidebar-user-avatar">F</div>
+                    <div class="user-details">
+                        <h4 id="sidebar-user-name">User Name</h4>
+                        <span id="sidebar-user-role" class="badge">Role</span>
+                    </div>
+                </div>
+
+                <!-- Sidebar navigation options will be loaded dynamically or toggled -->
+                <nav class="sidebar-nav">
+                    <!-- Common stats / Home -->
+                    <a href="#" class="nav-item active" id="nav-home">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Overview</span>
+                    </a>
+
+                    <!-- Role-specific Navigation Items (Controlled by CSS / JS display toggle) -->
+                    <div class="role-nav-items fleet-manager-nav hidden">
+                        <a href="#" class="nav-item" id="nav-fleet">
+                            <i class="fa-solid fa-truck"></i>
+                            <span>Fleet Vehicles</span>
+                        </a>
+                        <a href="#" class="nav-item" id="nav-maintenance">
+                            <i class="fa-solid fa-wrench"></i>
+                            <span>Maintenance Logs</span>
+                        </a>
+                    </div>
+
+                    <div class="role-nav-items dispatcher-nav hidden">
+                        <a href="#" class="nav-item" id="nav-trips-monitor">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>Live Trips</span>
+                        </a>
+                        <a href="#" class="nav-item" id="nav-scheduler">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span>Trip Scheduler</span>
+                        </a>
+                    </div>
+
+                    <div class="role-nav-items safety-officer-nav hidden">
+                        <a href="#" class="nav-item" id="nav-drivers">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Driver Safety</span>
+                        </a>
+                        <a href="#" class="nav-item" id="nav-compliance">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Compliance Checklist</span>
+                        </a>
+                    </div>
+
+                    <div class="role-nav-items financial-analyst-nav hidden">
+                        <a href="#" class="nav-item" id="nav-expenses">
+                            <i class="fa-solid fa-money-bill-trend-up"></i>
+                            <span>Fuel &amp; Expenses</span>
+                        </a>
+                        <a href="#" class="nav-item" id="nav-reports">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                            <span>Financial Analytics</span>
+                        </a>
+                    </div>
+
+                    <!-- Bottom options -->
+                    <div class="sidebar-footer">
+                        <a href="#" class="nav-item logout-btn" id="btn-logout">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <span>Sign Out</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Workspace Area -->
+            <div class="workspace">
+                <!-- Top Navbar -->
+                <header class="workspace-header">
+                    <div class="header-left">
+                        <h1 id="workspace-title">Fleet Dashboard</h1>
+                        <p id="workspace-subtitle" class="text-muted">Scope: Fleet and vehicle statuses</p>
+                    </div>
+                    <div class="header-right">
+                        <div id="system-time" class="time-badge">
+                            <i class="fa-regular fa-clock"></i>
+                            <span id="time-display">--:--:--</span>
+                        </div>
+                        <div class="profile-pill">
+                            <span id="nav-user-email">email@transitops.in</span>
+                            <span class="role-badge" id="nav-role-badge">Role</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Workspace Body -->
+                <main class="workspace-content">
+                    <!-- Loading overlay -->
+                    <div id="dashboard-loader" class="loader-container hidden">
+                        <div class="spinner"></div>
+                        <p>Syncing secure data from MySQL...</p>
+                    </div>
+
+                    <!-- 1. Stats Cards row -->
+                    <div class="stats-grid" id="stats-container">
+                        <!-- Loaded dynamically based on active role -->
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-truck"></i></div>
+                            <div class="stat-value">--</div>
+                            <div class="stat-label">Total Vehicles</div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Dynamic Content Section -->
+                    <div class="content-panel">
+                        <div class="panel-header">
+                            <h3 id="panel-title-text">Active Operations</h3>
+                            <div class="panel-actions">
+                                <button class="btn-sec" onclick="window.location.reload();">
+                                    <i class="fa-solid fa-arrows-rotate"></i> Refresh DB
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Data table container -->
+                        <div class="table-responsive">
+                            <table class="data-table" id="dashboard-data-table">
+                                <thead>
+                                    <tr id="table-headers">
+                                        <!-- Loaded dynamically -->
+                                    </tr>
+                                </thead>
+                                <tbody id="table-rows">
+                                    <!-- Loaded dynamically -->
+                                    <tr>
+                                        <td colspan="5" class="text-center">No data loaded yet.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 3. Visualization Container -->
+                    <div class="visualization-grid" id="visualization-section">
+                        <!-- Populated dynamically with HTML/CSS bar meters and charts -->
+                    </div>
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>
